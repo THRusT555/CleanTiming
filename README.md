@@ -8,23 +8,28 @@
 
 ## ・目次
 
-- 使い方
-  - [起動](#install)
-  - [記録](#record)
-    - [画像・保存の設定](#capture-settings)
-  - [解析](#analysis)
-    - [操作キー](#keys)
-    - [再生](#playback)
-  - [A/B比較](#comparison)
-  - [保存・出力](#save)
-- 仕組み
-  - [内部構造](#architecture)
-  - [結果の読み方](#results)
-- 環境・資料
-  - [動作環境](#requirements)
-  - [エラー対処](#troubleshooting)
-  - [変更点](#changes)
-  - [利用条件](#license)
+<table>
+<tr><th>使い方</th><th>仕組み</th><th>環境・資料</th></tr>
+<tr>
+<td valign="top">
+・<a href="#install">起動</a><br>
+・<a href="#record">記録</a>（<a href="#capture-settings">画像設定</a>）<br>
+・<a href="#analysis">解析</a>（<a href="#keys">キー</a>・<a href="#playback">再生</a>）<br>
+・<a href="#comparison">A/B比較</a><br>
+・<a href="#save">保存・出力</a>
+</td>
+<td valign="top">
+・<a href="#architecture">内部構造</a><br>
+・<a href="#results">結果の読み方</a>
+</td>
+<td valign="top">
+・<a href="#requirements">動作環境</a><br>
+・<a href="#troubleshooting">エラー対処</a><br>
+・<a href="#changes">変更点</a><br>
+・<a href="#license">利用条件</a>
+</td>
+</tr>
+</table>
 
 <a id="install"></a>
 ## ・起動
