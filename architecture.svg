@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="288" viewBox="0 0 720 288" role="img" aria-labelledby="title desc">
+  <title id="title">CleanTiming本体の記録経路</title>
+  <desc id="desc">Windows入力をRaw Inputで受信してinput.csvへ、画面更新をDXGIとD3D11で取得して画像と時刻CSVへ、ETWをPresentMonでpresent.csvへ保存する。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0 L7 3.5 L0 7 Z" fill="#64748b"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", "Noto Sans JP", sans-serif; fill: #172033; text-anchor: middle; font-size: 14px; }
+      .column { font-size: 12px; fill: #64748b; font-weight: 600; }
+      .heading { font-weight: 600; }
+      .api { font-family: Consolas, "Noto Sans JP", monospace; font-size: 12px; }
+      .node { stroke: #94a3b8; stroke-width: 1; }
+      .source { fill: #f1f5f9; }
+      .process { fill: #e8f2ff; stroke: #74a4d7; }
+      .output { fill: #eaf6ee; stroke: #81ad90; }
+      .edge { fill: none; stroke: #64748b; stroke-width: 1.5; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <text class="column" x="96" y="16">OS・ドライバー</text>
+  <text class="column" x="350" y="16">受信・取得</text>
+  <text class="column" x="622" y="16">記録ファイル</text>
+
+  <rect class="node source" x="12" y="30" width="168" height="68" rx="7"/>
+  <text class="heading" x="96" y="57">Windows入力</text>
+  <text x="96" y="79">HID / ISR・DPC</text>
+  <path class="edge" d="M180 64 H238"/>
+  <rect class="node process" x="240" y="30" width="220" height="68" rx="7"/>
+  <text class="heading" x="350" y="50">Raw Input</text>
+  <text class="api" x="350" y="69">WM_INPUT → QPC</text>
+  <text class="api" x="350" y="87">GetRawInputData</text>
+  <path class="edge" d="M460 64 H534"/>
+  <rect class="node output" x="536" y="30" width="172" height="68" rx="7"/>
+  <text class="heading" x="622" y="57">入力記録</text>
+  <text class="api" x="622" y="79">input.csv</text>
+
+  <rect class="node source" x="12" y="116" width="168" height="68" rx="7"/>
+  <text class="heading" x="96" y="143">デスクトップ更新</text>
+  <text x="96" y="165">Windows / GPU</text>
+  <path class="edge" d="M180 150 H238"/>
+  <rect class="node process" x="240" y="116" width="220" height="68" rx="7"/>
+  <text class="heading" x="350" y="136">DXGI / D3D11</text>
+  <text class="api" x="350" y="155">AcquireNextFrame</text>
+  <text class="api" x="350" y="173">CopyResource → Map</text>
+  <path class="edge" d="M460 150 H534"/>
+  <rect class="node output" x="536" y="116" width="172" height="68" rx="7"/>
+  <text class="heading" x="622" y="136">画像・更新QPC</text>
+  <text class="api" x="622" y="155">JPEG / PNG</text>
+  <text class="api" x="622" y="173">frames.csv / capture.csv</text>
+
+  <rect class="node source" x="12" y="202" width="168" height="68" rx="7"/>
+  <text class="heading" x="96" y="229">Windows ETW</text>
+  <text x="96" y="251">表示イベント</text>
+  <path class="edge" d="M180 236 H238"/>
+  <rect class="node process" x="240" y="202" width="220" height="68" rx="7"/>
+  <text class="heading" x="350" y="229">PresentMon</text>
+  <text x="350" y="251">別プロセスで記録</text>
+  <path class="edge" d="M460 236 H534"/>
+  <rect class="node output" x="536" y="202" width="172" height="68" rx="7"/>
+  <text class="heading" x="622" y="229">Present記録</text>
+  <text class="api" x="622" y="251">present.csv</text>
+</svg>
