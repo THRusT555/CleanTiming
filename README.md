@@ -8,15 +8,23 @@
 
 ## ・目次
 
-| 操作 | 仕様・資料 |
-|---|---|
-| ・[起動](#install) | ・[内部構造](#architecture) |
-| ・[記録](#record) | ・[画像・保存の設定](#capture-settings) |
-| ・[解析](#analysis) | ・[結果の読み方](#results) |
-| ・[操作キー](#keys) | ・[動作環境](#requirements) |
-| ・[再生](#playback) | ・[エラー対処](#troubleshooting) |
-| ・[A/B比較](#comparison) | ・[変更点](#changes) |
-| ・[保存・出力](#save) | ・[利用条件](#license) |
+- 使い方
+  - [起動](#install)
+  - [記録](#record)
+    - [画像・保存の設定](#capture-settings)
+  - [解析](#analysis)
+    - [操作キー](#keys)
+    - [再生](#playback)
+  - [A/B比較](#comparison)
+  - [保存・出力](#save)
+- 仕組み
+  - [内部構造](#architecture)
+  - [結果の読み方](#results)
+- 環境・資料
+  - [動作環境](#requirements)
+  - [エラー対処](#troubleshooting)
+  - [変更点](#changes)
+  - [利用条件](#license)
 
 <a id="install"></a>
 ## ・起動
