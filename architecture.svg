@@ -1,63 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="288" viewBox="0 0 720 288" role="img" aria-labelledby="title desc">
-  <title id="title">CleanTiming本体の記録経路</title>
-  <desc id="desc">Windows入力をRaw Inputで受信してinput.csvへ、画面更新をDXGIとD3D11で取得して画像と時刻CSVへ、ETWをPresentMonでpresent.csvへ保存する。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="398" viewBox="0 0 720 398" role="img" aria-labelledby="title desc">
+  <title id="title">入力受信と画像更新を共通時間軸で対応づける仕組み</title>
+  <desc id="desc">Windowsの入力処理から本ツールと対象アプリへ分岐。本ツールは受信時刻、画像は元の更新時刻をQPCで記録する。クリック受信を0msに揃え、8msでは変化なし、12msで初確認した2枚から反応の区間を読む。</desc>
   <defs>
     <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
       <path d="M0 0 L7 3.5 L0 7 Z" fill="#64748b"/>
     </marker>
     <style>
-      text { font-family: "Segoe UI", "Noto Sans JP", sans-serif; fill: #172033; text-anchor: middle; font-size: 16px; }
-      .column { font-size: 13px; fill: #64748b; font-weight: 600; }
-      .heading { font-weight: 600; }
-      .api { font-family: Consolas, "Noto Sans JP", monospace; font-size: 14px; }
-      .node { stroke: #94a3b8; stroke-width: 1; }
-      .source { fill: #f1f5f9; }
-      .process { fill: #e8f2ff; stroke: #74a4d7; }
-      .output { fill: #eaf6ee; stroke: #81ad90; }
+      text { font-family: "Segoe UI", "Noto Sans JP", sans-serif; fill: #172033; font-size: 14px; }
+      .center { text-anchor: middle; }
+      .heading { font-size: 15px; font-weight: 600; }
+      .small { font-size: 13px; fill: #475569; }
+      .node { stroke-width: 1; }
+      .system { fill: #eef2f6; stroke: #99a7b7; }
+      .measure { fill: #e8f2ff; stroke: #729ac9; }
+      .visible { fill: #eaf6ee; stroke: #7ea98c; }
       .edge { fill: none; stroke: #64748b; stroke-width: 1.5; marker-end: url(#arrow); }
     </style>
   </defs>
 
-  <text class="column" x="96" y="16">OS・ドライバー</text>
-  <text class="column" x="350" y="16">受信・取得</text>
-  <text class="column" x="622" y="16">記録ファイル</text>
+  <rect width="720" height="398" rx="8" fill="#f8fafc"/>
+  <text class="heading" x="16" y="23">入力と画面は別経路で進み、QPCで前後を揃える</text>
 
-  <rect class="node source" x="12" y="30" width="168" height="68" rx="7"/>
-  <text class="heading" x="96" y="57">Windows入力</text>
-  <text x="96" y="79">HID / ISR・DPC</text>
-  <path class="edge" d="M180 64 H238"/>
-  <rect class="node process" x="240" y="30" width="220" height="68" rx="7"/>
-  <text class="heading" x="350" y="50">Raw Input</text>
-  <text class="api" x="350" y="69">WM_INPUT → QPC</text>
-  <text class="api" x="350" y="87">GetRawInputData</text>
-  <path class="edge" d="M460 64 H534"/>
-  <rect class="node output" x="536" y="30" width="172" height="68" rx="7"/>
-  <text class="heading" x="622" y="57">入力記録</text>
-  <text class="api" x="622" y="79">input.csv</text>
+  <rect class="node system" x="16" y="72" width="160" height="74" rx="6"/>
+  <text class="center heading" x="96" y="94">マウス → Windows</text>
+  <text class="center" x="96" y="116">入力スタック</text>
+  <text class="center small" x="96" y="136">割込み・DPCなど</text>
+  <path class="edge" d="M176 109 H196 V73 H214"/>
+  <path class="edge" d="M196 109 V163 H214"/>
 
-  <rect class="node source" x="12" y="116" width="168" height="68" rx="7"/>
-  <text class="heading" x="96" y="143">デスクトップ更新</text>
-  <text x="96" y="165">Windows / GPU</text>
-  <path class="edge" d="M180 150 H238"/>
-  <rect class="node process" x="240" y="116" width="220" height="68" rx="7"/>
-  <text class="heading" x="350" y="136">DXGI / D3D11</text>
-  <text class="api" x="350" y="155">AcquireNextFrame</text>
-  <text class="api" x="350" y="173">CopyResource → Map</text>
-  <path class="edge" d="M460 150 H534"/>
-  <rect class="node output" x="536" y="116" width="172" height="68" rx="7"/>
-  <text class="heading" x="622" y="136">JPEG / PNG</text>
-  <text class="api" x="622" y="155">frames.csv</text>
-  <text class="api" x="622" y="173">capture.csv</text>
+  <rect class="node measure" x="216" y="42" width="208" height="62" rx="6"/>
+  <text class="center heading" x="320" y="67">本ツールの入力受信</text>
+  <text class="center" x="320" y="89">WM_INPUTでQPC採時</text>
+  <path class="edge" d="M424 73 H462"/>
+  <rect class="node measure" x="464" y="42" width="240" height="62" rx="6"/>
+  <text class="center heading" x="584" y="67">入力受信を0msに配置</text>
+  <text class="center" x="584" y="89">画像の更新QPCと照合</text>
 
-  <rect class="node source" x="12" y="202" width="168" height="68" rx="7"/>
-  <text class="heading" x="96" y="229">Windows ETW</text>
-  <text x="96" y="251">表示イベント</text>
-  <path class="edge" d="M180 236 H238"/>
-  <rect class="node process" x="240" y="202" width="220" height="68" rx="7"/>
-  <text class="heading" x="350" y="229">PresentMon</text>
-  <text x="350" y="251">別プロセスで記録</text>
-  <path class="edge" d="M460 236 H534"/>
-  <rect class="node output" x="536" y="202" width="172" height="68" rx="7"/>
-  <text class="heading" x="622" y="229">Present記録</text>
-  <text class="api" x="622" y="251">present.csv</text>
+  <rect class="node system" x="216" y="132" width="208" height="62" rx="6"/>
+  <text class="center heading" x="320" y="157">対象アプリ側</text>
+  <text class="center" x="320" y="179">入力処理 → 描画</text>
+  <path class="edge" d="M424 163 H462"/>
+  <rect class="node visible" x="464" y="132" width="240" height="62" rx="6"/>
+  <text class="center heading" x="584" y="157">OSの画面更新（QPC）</text>
+  <text class="center" x="584" y="179">→ DXGI取得・CPU読出し</text>
+  <path class="edge" d="M584 132 V106"/>
+
+  <text class="small" x="16" y="216">対応づけ：画像更新QPC − 入力受信QPC</text>
+  <path d="M16 230 H704" stroke="#cbd5e1"/>
+  <text class="heading" x="16" y="252">目視で指定するのは「変化を初確認した画像」</text>
+
+  <path class="edge" d="M92 286 H682"/>
+  <circle cx="140" cy="286" r="4" fill="#4778b3"/>
+  <circle cx="420" cy="286" r="4" fill="#64748b"/>
+  <circle cx="560" cy="286" r="4" fill="#3e8158"/>
+  <text class="center" x="140" y="274">0ms</text>
+  <text class="center" x="420" y="274">+8ms</text>
+  <text class="center" x="560" y="274">+12ms</text>
+
+  <rect class="node measure" x="84" y="303" width="112" height="38" rx="5"/>
+  <text class="center" x="140" y="327">入力を受信</text>
+  <rect class="node system" x="350" y="303" width="140" height="38" rx="5"/>
+  <text class="center" x="420" y="327">まだ変化なし</text>
+  <rect class="node visible" x="500" y="303" width="120" height="38" rx="5"/>
+  <text class="center" x="560" y="327">初めて変化あり</text>
+  <path d="M420 349 V358 H560 V349" fill="none" stroke="#3e8158" stroke-width="1.5"/>
+  <text class="center heading" x="490" y="384">反応はこの2枚の間</text>
 </svg>
