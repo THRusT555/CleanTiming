@@ -6,10 +6,10 @@
       <path d="M0 0 L7 3.5 L0 7 Z" fill="#64748b"/>
     </marker>
     <style>
-      text { font-family: "Segoe UI", "Noto Sans JP", sans-serif; fill: #172033; text-anchor: middle; font-size: 14px; }
-      .column { font-size: 12px; fill: #64748b; font-weight: 600; }
+      text { font-family: "Segoe UI", "Noto Sans JP", sans-serif; fill: #172033; text-anchor: middle; font-size: 16px; }
+      .column { font-size: 13px; fill: #64748b; font-weight: 600; }
       .heading { font-weight: 600; }
-      .api { font-family: Consolas, "Noto Sans JP", monospace; font-size: 12px; }
+      .api { font-family: Consolas, "Noto Sans JP", monospace; font-size: 14px; }
       .node { stroke: #94a3b8; stroke-width: 1; }
       .source { fill: #f1f5f9; }
       .process { fill: #e8f2ff; stroke: #74a4d7; }
@@ -45,9 +45,9 @@
   <text class="api" x="350" y="173">CopyResource → Map</text>
   <path class="edge" d="M460 150 H534"/>
   <rect class="node output" x="536" y="116" width="172" height="68" rx="7"/>
-  <text class="heading" x="622" y="136">画像・更新QPC</text>
-  <text class="api" x="622" y="155">JPEG / PNG</text>
-  <text class="api" x="622" y="173">frames.csv / capture.csv</text>
+  <text class="heading" x="622" y="136">JPEG / PNG</text>
+  <text class="api" x="622" y="155">frames.csv</text>
+  <text class="api" x="622" y="173">capture.csv</text>
 
   <rect class="node source" x="12" y="202" width="168" height="68" rx="7"/>
   <text class="heading" x="96" y="229">Windows ETW</text>
