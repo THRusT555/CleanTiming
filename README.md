@@ -4,9 +4,9 @@
 
 - 観測する変化：弾数減少・反動開始・命中表示・死亡表示など
 - 比較するもの：同じ目印の初確認画像、反応までの観測区間、画像更新・取得のばらつき
-- 配布版：**1.1.0-beta.1**／動作確認：**Windows 11 Pro 25H2 x64**
+- 配布版：**1.1.0**／動作確認：**Windows 11 Pro 25H2 x64**
 
-**[ZIPをダウンロード](https://github.com/THRusT555/CleanTiming/releases/download/v1.1.0-beta.1/CleanTiming-1.1.0-beta.1-win-x64.zip)** · [リリース情報](https://github.com/THRusT555/CleanTiming/releases/tag/v1.1.0-beta.1)
+**[ZIPをダウンロード](https://github.com/THRusT555/CleanTiming/releases/download/1.1.0/CleanTiming-1.1.0-win-x64.zip)** · [リリース情報](https://github.com/THRusT555/CleanTiming/releases/tag/1.1.0)
 
 ## ・目次
 
@@ -179,7 +179,7 @@
 |---|---|
 | 反応が画像範囲に収まらない | クリック後の画像範囲を広げて再記録 |
 | 観測区間が広い | 直前画像との間隔、画像更新・取得の記録 |
-| 前範囲を広げると解析できない | 1.1.0-beta.1の既知不具合。クリック前50msで記録 |
+| 前範囲を広げると解析できない | 1.1.0の既知不具合。クリック前50msで記録 |
 | CT1001 | Windowsの対応版とPCの日付 |
 | CT1301 / CT1302 | 空き容量、RAM上限、画像範囲・取得頻度 |
 | CT1501 | Present補助の記録。入力・画像の基本記録は継続 |
@@ -192,9 +192,9 @@
 <a id="changes"></a>
 ### ・配布版
 
-- バージョン：1.1.0-beta.1
+- バージョン：1.1.0
 - この版の主な追加：画像のオフライン再生・A/B比較・再生系列の選択・前後の画像範囲設定
-- 詳細：[リリース情報](https://github.com/THRusT555/CleanTiming/releases/tag/v1.1.0-beta.1)
+- 詳細：[リリース情報](https://github.com/THRusT555/CleanTiming/releases/tag/1.1.0)
 - 検証結果：ZIP内の`TEST-RESULTS.json`
 - 状態：未署名ベータ・アンチチート未公認
 
