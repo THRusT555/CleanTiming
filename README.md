@@ -39,22 +39,13 @@
 
 ```mermaid
 flowchart TD
-    setup["記録設定：保存先・モニター・秒数・画像範囲"]
-    start["記録開始 → 開始待ち → 対象画面を操作"]
-    input["マウスのクリック受信時刻を記録"]
-    image["デスクトップ画像と更新時刻を取得"]
-    save["クリック前後の画像と時刻をセッションへ保存"]
-    review["解析：クリックを選び、画像を再生・コマ送り"]
-    mark["変化が初めて見えた画像を指定して確定"]
-    result["クリックから画面変化までの観測区間を表示"]
-    compare["A/B比較：別の記録と画像・確定結果を照合"]
-    export["観測・作業JSONや比較JSONを保存"]
-    setup --> start
-    start --> input
-    start --> image
-    input --> save
-    image --> save
-    save --> review --> mark --> result
+    setup["1. 記録設定<br/>保存先・モニター・秒数"]
+    capture["2. 記録して保存<br/>クリック時刻と前後の画像"]
+    review["3. 画像を確認<br/>再生・コマ送りで変化を探す"]
+    result["4. 初確認画像を指定<br/>クリックからの観測区間を確定"]
+    compare["5. A/B比較<br/>別の記録と画像・結果を照合"]
+    export["6. 作業・結果を保存<br/>観測JSON・比較JSON"]
+    setup --> capture --> review --> result
     result --> compare --> export
     result --> export
 ```
