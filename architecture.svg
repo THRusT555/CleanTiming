@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="398" viewBox="0 0 720 398" role="img" aria-labelledby="title desc">
   <title id="title">入力受信と画像更新を共通時間軸で対応づける仕組み</title>
-  <desc id="desc">Windowsの入力処理から本ツールと対象アプリへ分岐。本ツールは受信時刻、画像は元の更新時刻をQPCで記録する。クリック受信を0msに揃え、8msでは変化なし、12msで初確認した2枚から反応の区間を読む。</desc>
+  <desc id="desc">Windowsの入力処理から本ツールと対象アプリへ分岐。本ツールは受信時刻、画像は元の更新時刻をQPCで記録する。入力受信を0msに揃え、8msでは変化なし、12msで初確認した2枚から反応の区間を読む。</desc>
   <defs>
     <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
       <path d="M0 0 L7 3.5 L0 7 Z" fill="#64748b"/>
@@ -22,8 +22,8 @@
   <text class="heading" x="16" y="23">入力と画面は別経路で進み、QPCで前後を揃える</text>
 
   <rect class="node system" x="16" y="72" width="160" height="74" rx="6"/>
-  <text class="center heading" x="96" y="94">マウス → Windows</text>
-  <text class="center" x="96" y="116">入力スタック</text>
+  <text class="center heading" x="96" y="94">キー・マウス</text>
+  <text class="center" x="96" y="116">Windows入力スタック</text>
   <text class="center small" x="96" y="136">割込み・DPCなど</text>
   <path class="edge" d="M176 109 H196 V73 H214"/>
   <path class="edge" d="M196 109 V163 H214"/>
