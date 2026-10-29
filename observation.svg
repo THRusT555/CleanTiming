@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 350" role="img" aria-labelledby="title">
+<title id="title">観測区間と画像取得側の遅れは別の値</title>
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M0 0L8 4L0 8" fill="#4f6982"/>
+</marker>
+</defs>
+<rect width="960" height="350" rx="12" fill="#f4f7fb"/>
+<g font-family="Yu Gothic UI, sans-serif" font-size="20" fill="#17324d">
+<text x="24" y="36" >入力からの経過：画面の反応と、画像の取り込みを分ける</text>
+<path d="M140 223L918 223" fill="none" stroke="#4f6982" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M140 215L140 233" fill="none" stroke="#4f6982" stroke-width="2.5" />
+<text x="114" y="259" font-size="18">0ms</text>
+<path d="M360 215L360 233" fill="none" stroke="#4f6982" stroke-width="2.5" />
+<text x="334" y="259" font-size="18">+8ms</text>
+<path d="M470 215L470 233" fill="none" stroke="#4f6982" stroke-width="2.5" />
+<text x="444" y="259" font-size="18">+12ms</text>
+<path d="M650 215L650 233" fill="none" stroke="#4f6982" stroke-width="2.5" />
+<text x="624" y="259" font-size="18">+18ms</text>
+<path d="M790 215L790 233" fill="none" stroke="#4f6982" stroke-width="2.5" />
+<text x="764" y="259" font-size="18">+22ms</text>
+<rect x="270" y="63" width="158" height="75" rx="8" fill="#fff" stroke="#9eb3c9"/>
+<text x="282" y="92" >変化なし</text>
+<text x="282" y="120" font-size="18">画像更新 +8ms</text>
+<rect x="450" y="63" width="158" height="75" rx="8" fill="#fff" stroke="#9eb3c9"/>
+<text x="462" y="92" >変化を初確認</text>
+<text x="462" y="120" font-size="18">画像更新 +12ms</text>
+<path d="M360 138L360 211" fill="none" stroke="#4f6982" stroke-width="2.5" />
+<path d="M470 138L470 211" fill="none" stroke="#4f6982" stroke-width="2.5" />
+<text x="99" y="292" >入力受信</text>
+<path d="M360 172L470 172" fill="none" stroke="#2366ad" stroke-width="7"/>
+<text x="300" y="198" fill="#2366ad" font-size="18">観測区間 8～12ms</text>
+<path d="M470 151L650 151" fill="none" stroke="#aa5b17" stroke-width="7"/>
+<text x="639" y="90" >取得通知</text>
+<text x="764" y="130" >RAM完了</text>
+<path d="M650 96L650 212" fill="none" stroke="#4f6982" stroke-width="2.5" />
+<path d="M790 137L790 212" fill="none" stroke="#4f6982" stroke-width="2.5" />
+<text x="623" y="181" fill="#aa5b17" font-size="18">更新→取得の遅れ</text>
+<text x="24" y="330" >更新時刻を保持して計算。数値は説明用の例、保存完了はさらに後。</text>
+</g>
+</svg>
