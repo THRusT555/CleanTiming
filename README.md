@@ -6,10 +6,14 @@
 
 **入力後の画面変化を画像で確認し、設定変更前後の反応を比べるWindows用ツール。**
 
-| ・ソフト概要 | ・使い方 | ・できること |
-|---|---|---|
-| [目的と基準](#overview) | [記録から比較まで](#usage) | [記録・解析・共有](#features) |
-| [・入力と画像の仕組み](#architecture) | [・詳細挙動・結果の見方](#details) | [・動作環境・配布情報](#distribution) |
+| 目次 | 内容 |
+|---|---|
+| [ソフト概要](#overview) | 比較の目的と0msの基準 |
+| [使い方](#usage) | 記録から画像確認・比較まで |
+| [できること](#features) | 記録・解析・保存・共有 |
+| [入力と画像の仕組み](#architecture) | 並行する経路と採時位置 |
+| [詳細挙動・結果の見方](#details) | 観測区間・画像間隔・欠測 |
+| [動作環境・配布情報](#distribution) | 対応条件と配布先 |
 
 <a id="overview"></a>
 ## ・ソフト概要
@@ -27,7 +31,7 @@
 <a id="usage"></a>
 ## ・使い方
 
-1. [配布ZIP](https://github.com/THRusT555/CleanTiming/releases/download/1.1.3/CleanTiming-1.1.3-win-x64.zip)全体をローカルフォルダーへ展開し、`CleanTiming.exe`を起動
+1. [配布ZIP](https://github.com/THRusT555/CleanTiming/releases/download/1.1.4/CleanTiming-1.1.4-win-x64.zip)全体をローカルフォルダーへ展開し、`CleanTiming.exe`を起動
 2. 保存先・モニター・記録する入力・入力前後の画像範囲を設定
 3. 記録を開始し、開始待ちの間に対象画面へ切替 → 操作を実行 → 記録を停止
 4. 保存完了後に解析を開き、対象入力の画像をコマ送りで確認
@@ -35,6 +39,28 @@
 6. 条件を変えて同じ目印を記録し、A/B比較へ読み込み
 
 展開先：書き込み可能な場所。`runtime`・`documents`の配置を維持。
+
+### ・操作とショートカット
+
+| アイコン | 操作名 | キー |
+|---|---|---|
+| <img src="icons/record.svg" width="20" height="20" alt="記録"> <img src="icons/stop.svg" width="20" height="20" alt="停止"> | 記録の開始・停止 | 設定した開始・停止キー（初期値：Alt+F6） |
+| <img src="icons/previous.svg" width="20" height="20" alt="前の画像"> <img src="icons/next.svg" width="20" height="20" alt="次の画像"> | 前／次の画像 | A／D、左右キー。Shift併用で5枚 |
+| <img src="icons/back.svg" width="20" height="20" alt="前の入力"> <img src="icons/forward.svg" width="20" height="20" alt="次の入力"> | 前／次の入力 | Q／E、PageUp／PageDown、J／K |
+| <img src="icons/reset.svg" width="20" height="20" alt="受信直前"> | 入力受信直前の画像 | C |
+| <img src="icons/play.svg" width="20" height="20" alt="再生"> <img src="icons/pause.svg" width="20" height="20" alt="一時停止"> | 再生／一時停止 | ボタンへフォーカスしてEnter／Space |
+| — | 画面変化開始／敵の死亡 | F／G |
+| <img src="icons/check.svg" width="20" height="20" alt="確定して次へ"> | 確定して次へ | Space／Enter（入力欄・操作ボタン以外） |
+| <img src="icons/clear.svg" width="20" height="20" alt="指定解除"> | 指定を解除 | R |
+| <img src="icons/skip.svg" width="20" height="20" alt="除外"> | 除外して次へ | X |
+| <img src="icons/undo.svg" width="20" height="20" alt="除外取消"> | 除外を取り消す | U |
+| <img src="icons/forward.svg" width="20" height="20" alt="未確認へ"> | 次の未確認 | V |
+| <img src="icons/zoom.svg" width="20" height="20" alt="100%"> | 画像の拡大率を100%に戻す | Z |
+| <img src="icons/save.svg" width="20" height="20" alt="保存"> <img src="icons/folder.svg" width="20" height="20" alt="フォルダー"> | 保存／フォルダーを開く | 操作ボタンを使用 |
+| — | 先頭／末尾の画像 | Home／End |
+| — | 撃破／命中／外れ／不明 | 1／2／3／4（0も不明） |
+
+開始・停止キーは、記録する入力とは別設定です。解析キーは文字入力中に実行しません。
 
 <a id="features"></a>
 ## ・できること
@@ -73,7 +99,8 @@
 | +8ms：変化なし／+12ms：初確認 | 変化を挟む範囲：約8～12ms |
 | QPC 10MHzでの表示例 | 入力QPCの±1tickを含め、0.1ms単位で外側へ丸めて7.9～12.1ms |
 | 初確認画像の直前がない | 下限を作らず、上限のみ |
-| 画像更新→取得通知／RAM完了 | 本ツールが画像を取り込むまでの経過。反応の区間とは別 |
+| +12msの画像更新→+18msの取得通知 | 取り込み側の遅れ：6ms（図の例）。反応の約8～12msとは別 |
+| 画像更新→RAM完了 | CPU側へ画像を読み出すまでの経過 |
 | 欠測・取得失敗 | 変化なしや0msとは区別。対象区間・理由を確認 |
 
 直前画像に同じ変化がないことを目視で確かめます。Present提出・OS表示は独立系列で、近い時刻の取得画像と同じフレームとは判断しません。
@@ -123,7 +150,7 @@
 
 | 項目 | 条件・案内 |
 |---|---|
-| 配布版 | [1.1.3・リリース情報](https://github.com/THRusT555/CleanTiming/releases/tag/1.1.3) |
+| 配布版 | [1.1.4・リリース情報](https://github.com/THRusT555/CleanTiming/releases/tag/1.1.4) |
 | OS | Windows 11 x64。Home／Pro系：25H2・26H1・26H2 |
 | 動作確認 | Windows 11 Pro 25H2 x64（26200.9711）。他エディションは`documents/SUPPORT.md` |
 | 画面 | D3D11対応GPUに接続したSDR・回転なしのモニター |
